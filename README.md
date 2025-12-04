@@ -5,13 +5,88 @@
 [![Azure](https://img.shields.io/badge/azure-production-0078D4)](https://azure.microsoft.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-## 📋 Overview
+## 📋 What is This?
 
-**SummitLMS** is a production-ready, containerized Learning Management System (LMS) engineered for Microsoft Azure. It delivers a secure, scalable, and compliant platform for hosting educational content, leveraging **Infrastructure as Code (IaC)** to eliminate configuration drift and ensure rapid disaster recovery.
+**SummitLMS** is a complete, ready-to-deploy Learning Management System (like Moodle or Canvas) that runs on Microsoft Azure cloud. 
 
-By combining the flexibility of WordPress with the rigor of enterprise cloud architecture—including **Zero-Trust networking**, **Azure Key Vault** secrets management, and **Docker** containerization—SummitLMS bridges the gap between ease of use and enterprise security requirements.
+### In Simple Terms
 
-> **Executive Summary:** SummitLMS allows organizations to deploy a fully secure, compliant, and scalable educational platform in minutes, reducing operational overhead by 60% compared to traditional self-hosted solutions.
+Imagine you want to create an online school or training platform where you can:
+- Upload courses and lessons
+- Manage students and instructors
+- Track progress and assignments
+- Host videos and documents
+
+Instead of spending weeks setting up servers, databases, and security, **you run a single command** and get a fully functional, enterprise-grade educational platform in 15 minutes.
+
+### What Makes This Special?
+
+Most LMS deployments have serious problems:
+- **Security risks** (exposed databases, hardcoded passwords visible in code)
+- **High costs** (paying for servers 24/7 even when no one is using them)
+- **Maintenance headaches** (manual updates, configuration drift)
+
+**SummitLMS solves all of this by:**
+- Using Microsoft Azure's managed services (no server maintenance)
+- Hiding your database from the internet completely (Zero-Trust security)
+- Storing all passwords in a secure vault (Azure Key Vault)
+- Running everything in Docker containers (consistency across environments)
+- Codifying the entire infrastructure (one command to deploy, one to destroy)
+
+### What You Get After Deployment
+
+✅ A working WordPress-based LMS accessible at: `https://app-summitlms-prod.azurewebsites.net`  
+✅ A MySQL database that's invisible to the internet  
+✅ All passwords stored in Azure Key Vault (not in your code)  
+✅ Built-in monitoring and logging (Application Insights + Log Analytics)  
+✅ Professional resource naming (e.g., `rg-summitlms-prod`, `kv-summitlms-prod`)  
+✅ Automatic scaling capabilities (upgrade from B1 to Premium as you grow)
+
+### Cost
+
+Running on **Azure's cheapest tier (B1)**:
+- **~$35-40 CAD/month** when running 24/7
+- Can be paused/destroyed when not in use
+- Perfect for portfolios, demos, or small organizations
+
+---
+
+## 🚀 Quick Start (3 Steps)
+
+1. **Install Prerequisites**
+   ```bash
+   # macOS/Linux
+   brew install terraform azure-cli
+   
+   # Windows (PowerShell as Admin)
+   choco install terraform azure-cli
+   ```
+
+2. **Deploy Infrastructure**
+   ```bash
+   git clone https://github.com/thezaynahmed/summitlms-azure-terraform.git
+   cd summitlms-azure-terraform
+   
+   # Login to Azure
+   az login
+   
+   # Create your password file (NOT committed to Git)
+   echo 'mysql_admin_password = "YourSecurePassword123!"' > terraform.tfvars
+   
+   # Deploy (takes ~15 minutes)
+   terraform init
+   terraform apply
+   ```
+
+3. **Access Your LMS**
+   ```bash
+   # Copy the output URL and open in browser
+   # Example: https://app-summitlms-prod.azurewebsites.net
+   ```
+
+**That's it!** You now have a production-ready LMS.
+
+📖 **For detailed instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)**
 
 ---
 
